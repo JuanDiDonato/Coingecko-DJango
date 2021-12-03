@@ -1,0 +1,31 @@
+{% extends "base_generic.html" %}
+
+{% block title %} <title>Wallet</title> {% endblock %}
+
+{% block content %}
+    <h2>Your Coins!</h2>
+    <table border="2">
+        <thead>
+            <tr>
+                <th>Crypto</th>
+                <th>Symbol</th>
+                <th>Price</th>
+                <th>Last Updated</th>
+                <th>Image</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for coin in user.wallet_set.all %}
+            <tr>
+                <th>{{coin.crypto}}</th>
+                <th>{{coin.symbol}}</th>
+                <th>{{coin.price}}</th>
+                <th>{{coin.last_updated}}</th>
+                <th><img src="{{coin.image}}" alt="{{coin.crypto}}" ></th>
+                <th><a href="{% url 'delete_coin' coin.crypto %}">Delete</a></th>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

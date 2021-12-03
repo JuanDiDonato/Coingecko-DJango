@@ -1,0 +1,30 @@
+{% extends "base_generic.html" %}
+
+{% block title %} 
+    <title>Cryptos</title>
+{% endblock %}
+{% block content %}
+    <h1>CoinsApp Home</h1>
+    <h2>Coins</h2>
+    <table border="3">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for coin in coins %}
+            <tr>
+                <th>{{coin.id}}</th>
+                <th>{{coin.symbol}}</th>
+                <th>{{coin.name}}</th>
+                <th><a href="{% url 'wallet_add' coin.id %}">Add to Wallet</a></th>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock content %}
